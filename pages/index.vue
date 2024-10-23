@@ -15,14 +15,14 @@
           <div class="actions">
             <span>| View</span>
             <a class="icon-grid" href="#">
-              <img src="../images/grid.png" alt="grid-items">
+              <img src="../images/grid.png" alt="grid-items" @click.prevent="setGridView('grid')">
             </a>
             <a href="#">
-              <img src="../images/grid-solo.png" alt="solo-items">
+              <img src="../images/grid-solo.png" alt="solo-items" @click.prevent="setGridView('solo')">
             </a>
           </div>
         </div>
-        <div class="yacht-cards">
+        <div :class="['yacht-cards', gridView]">
           <article class="yacht-card">
             <img class="img"
               src="https://www.arthaudyachting.com/wp-content/uploads/2023/02/Yacht-charter-M-Y-DOMINIQUE_8.jpg"
@@ -68,7 +68,7 @@
             </div>
           </article>
         </div>
-        <div class="footer">
+        <div class="load-more-wrapper">
           <button class="load-button">
             Load more
           </button>
@@ -82,9 +82,22 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  name: 'IndexPage'
+  name: 'IndexPage',
+  data() {
+    return {
+      gridView: 'grid' as 'grid' | 'solo',
+      // yachtsText: 'YACHTS FOR SALE',
+    };
+  },
+  methods: {
+    setGridView(view: 'grid' | 'solo'): void {
+      this.gridView = view;
+      console.log("Grid view set to:", this.gridView);
+    },
+  },
 })
 </script>
+
 <style>
 @font-face {
   font-family: 'FrankRuhlLibre';
@@ -125,13 +138,17 @@ export default Vue.extend({
 :root {
   /* COLORS */
   --color-white: #FFFFFF;
+
   --color-oceanLux-800: #323349;
   --color-oceanLux-600: #676778;
   --color-oceanLux-400: #676778;
+
   --color-black-scale-500: #858585;
   --color-black-scale-700: #4E4E4E;
-  --color-black-0B2020: #0B2020;
+
+  --color-primary-800: #0B2020;
   --color-primary-900: #091919;
+  --color-primary-700: #405757;
   /* FONTS */
   --font-family: UrbanGroteskReBo, Helvetica, Arial, sans-serif;
   --font-weight-regular: 400;
@@ -154,6 +171,9 @@ export default Vue.extend({
   --spacing-48: 3rem;
   --spacing-60: 3.75rem;
   --spacing-64: 4rem;
+  
+  /* LAYOUT */
+  --header-height: 80px;
 }
 
 body {
@@ -177,7 +197,7 @@ header {
   align-items: center;
   padding-top: var(--spacing-12);
   padding-bottom: var(--spacing-12);
-  height: 80px;
+  height: var(--header-height);
   /* navbar fixed */
   position: fixed;
   left: 0;
@@ -187,14 +207,12 @@ header {
 }
 
 main{
-  margin-top: 80px;
+  margin-top: var(--header-height);
 }
 
 .logo-roy {
   width: 3.875rem;
-  /*62px*/
   height: 1.75rem;
-  /*28px*/
 }
 
 /* MAIN CONTENT */
@@ -219,9 +237,35 @@ main{
   padding-left: var(--spacing-16);
   padding-right: var(--spacing-16);
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: var(--spacing-48) var(--spacing-2);
+  grid-template-columns: repeat(auto-fill, minmax(375px, 1fr));
+  gap: var(--spacing-60);
+  transition: all 0.3s ease-in-out;
 }
+
+/* CAMBIOS DE ESTADO PARA EL GRID */
+.yacht-cards.grid {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-48) var(--spacing-2);
+  
+}
+
+.yacht-cards.solo {
+  grid-template-columns: repeat(2, minmax(300px, 1fr));
+  gap: var(--spacing-60) var(--spacing-10);
+  }
+
+  /* BREACKPOINTS */
+  /* @media (min-width: 1024px) {
+  .yacht-cards, .yacht-cards.grid, .yacht-cards.solo {
+    gap: var(--spacing-60) var(--spacing-10);
+  }
+}
+
+@media (min-width: 1440px) {
+  .yacht-cards, .yacht-cards.grid, .yacht-cards.solo {
+    gap: var(--spacing-48) var(--spacing-2);
+  }
+} */
 
 .yacht-card {
   display: flex;
@@ -247,11 +291,12 @@ main{
 .header-and-enquire-action {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-right: var(--spacing-16);
 }
 
 .enquiry {
-  background-color: var(--color-black-0B2020);
+  background-color: var(--color-primary-800);
   color: var(--color-white);
   text-decoration: none;
   display: flex;
@@ -261,6 +306,12 @@ main{
   height: 44px;
   padding: var(--spacing-8) var(--spacing-16) var(--spacing-8) var(--spacing-16);
   opacity: 0;
+}
+
+@media (max-width: 840px) {
+  .enquiry {
+    background-color: var(--color-primary-700);
+  }
 }
 
 .fav,
@@ -274,9 +325,9 @@ main{
   opacity: 1;
 }
 
-/* FOOTER */
+/* LOAD MORE */
 
-.footer {
+.load-more-wrapper {
   display: flex;
   justify-content: center;
   padding-top: var(--spacing-64);
