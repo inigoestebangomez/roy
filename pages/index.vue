@@ -13,7 +13,7 @@
         <div class="counter-results-and-layout-actions">
           <p>YACHTS FOR SALE · 340</p>
           <div class="actions">
-            <span>|  View</span>
+            <span>| View</span>
             <a class="icon-grid" href="#">
               <img src="../images/grid.png" alt="grid-items">
             </a>
@@ -27,9 +27,9 @@
             <img class="img"
               src="https://www.arthaudyachting.com/wp-content/uploads/2023/02/Yacht-charter-M-Y-DOMINIQUE_8.jpg"
               alt="yacht image">
-              <a href="#" class="fav" >
-                <img src="../images/fav.icon.png" alt="fav icon">
-              </a>
+            <a href="#" class="fav">
+              <img src="../images/fav.icon.png" alt="fav icon">
+            </a>
             <div class="details">
               <p class="price">Price: €2.000.000</p>
               <p>Length: 55.2m | Guests: 12 | Cabins: 7</p>
@@ -70,8 +70,8 @@
         </div>
         <div class="footer">
           <button class="load-button">
-              Load more
-            </button>
+            Load more
+          </button>
         </div>
       </section>
     </main>
@@ -107,14 +107,18 @@ export default Vue.extend({
   font-style: normal;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   border: 0;
   box-sizing: border-box;
   vertical-align: baseline;
 }
-*::before, *::after {
+
+*::before,
+*::after {
   display: block;
 }
 
@@ -157,9 +161,11 @@ body {
   color: var(--color-black-700);
   font: var(--font-body-16);
 }
-h3{
+
+h3 {
   font: var(--font-h3);
 }
+
 /* HEADER */
 .blank-space {
   padding-bottom: var(--spacing-32);
@@ -171,11 +177,24 @@ header {
   align-items: center;
   padding-top: var(--spacing-12);
   padding-bottom: var(--spacing-12);
+  height: 80px;
+  /* navbar fixed */
+  position: fixed;
+  left: 0;
+  right: 0;
+  background-color: var(--color-white);
+  z-index: 100;
+}
+
+main{
+  margin-top: 80px;
 }
 
 .logo-roy {
-  width: 3.875rem; /*62px*/
-  height: 1.75rem; /*28px*/
+  width: 3.875rem;
+  /*62px*/
+  height: 1.75rem;
+  /*28px*/
 }
 
 /* MAIN CONTENT */
@@ -186,7 +205,8 @@ header {
   font: var(--font-body-20);
   color: var(--color-oceanLux-800);
 }
-.actions{
+
+.actions {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -211,7 +231,7 @@ header {
   position: relative;
 }
 
-.fav{
+.fav {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -224,26 +244,27 @@ header {
   color: var(--color-black-scale-500);
 }
 
-.header-and-enquire-action{
+.header-and-enquire-action {
   display: flex;
   justify-content: space-between;
   padding-right: var(--spacing-16);
 }
 
-.enquiry{
-background-color: var(--color-black-0B2020);
-color: var(--color-white);
-text-decoration: none;
-display: flex;
-align-items: center;
-justify-content: center;
-width: 88px;
-height: 44px;
-padding: var(--spacing-8) var(--spacing-16) var(--spacing-8) var(--spacing-16);
-opacity: 0;
+.enquiry {
+  background-color: var(--color-black-0B2020);
+  color: var(--color-white);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 44px;
+  padding: var(--spacing-8) var(--spacing-16) var(--spacing-8) var(--spacing-16);
+  opacity: 0;
 }
 
-.fav, .enquiry {
+.fav,
+.enquiry {
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -255,15 +276,18 @@ opacity: 0;
 
 /* FOOTER */
 
-.footer{
-display: flex;
-justify-content: center;
-padding-top: var(--spacing-64);
-padding-bottom: var(--spacing-64);
+.footer {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--spacing-64);
+  padding-bottom: var(--spacing-64);
 }
-.load-button{
-  width: 6.875rem; /* 110px */
-  height: 2.75rem; /* 44px */
+
+.load-button {
+  width: 6.875rem;
+  /* 110px */
+  height: 2.75rem;
+  /* 44px */
   background-color: transparent;
   border: 1px solid var(--color-oceanLux-600);
   border-radius: 0.125rem;
@@ -282,4 +306,5 @@ padding-bottom: var(--spacing-64);
   border: 0;
   padding: var(--spacing-8) var(--spacing-16) var(--spacing-8) var(--spacing-16);
 }
+
 </style>
