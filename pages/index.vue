@@ -11,7 +11,8 @@
       <section>
         <h2 class="sr-only">Yacht search results</h2>
         <div class="counter-results-and-layout-actions">
-          <p>YACHTS FOR SALE · 340</p>
+          <p class="counter-results-and-layout-actions--desktop">YACHTS FOR SALE · 340</p>
+          <p class="counter-results-and-layout-actions--mobile">BUY · 340 YACHTS</p>
           <div class="actions">
             <span>| View</span>
             <a class="icon-grid" href="#">
@@ -86,7 +87,6 @@ export default Vue.extend({
   data() {
     return {
       gridView: 'grid' as 'grid' | 'solo',
-      // yachtsText: 'YACHTS FOR SALE',
     };
   },
   methods: {
@@ -171,9 +171,18 @@ export default Vue.extend({
   --spacing-48: 3rem;
   --spacing-60: 3.75rem;
   --spacing-64: 4rem;
-  
+
   /* LAYOUT */
   --header-height: 80px;
+
+  /*Z-INDEX*/
+  --z-index-1: 1;
+  --z-index-2: 2;
+  --z-index-3: 3;
+  --z-index-4: 4;
+  --z-index-5: 5;
+
+  --z-index-header: var(--z-index-1);
 }
 
 body {
@@ -203,10 +212,10 @@ header {
   left: 0;
   right: 0;
   background-color: var(--color-white);
-  z-index: 100;
+  z-index: var(--z-index-1);
 }
 
-main{
+main {
   margin-top: var(--header-height);
 }
 
@@ -217,20 +226,55 @@ main{
 
 /* MAIN CONTENT */
 .counter-results-and-layout-actions {
-  display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: var(--spacing-12);
+    padding-top: var(--spacing-16);
+    padding-bottom: var(--spacing-32);
+}
+
+@media (min-width: 635px) {
+  .counter-results-and-layout-actions{
+    display: flex;
   justify-content: space-between;
   padding: var(--spacing-8) var(--spacing-16) var(--spacing-8) var(--spacing-16);
   font: var(--font-body-20);
   color: var(--color-oceanLux-800);
+  }
+}
+
+.counter-results-and-layout-actions--desktop {
+  display: none;
+}
+
+.counter-results-and-layout-actions--mobile {
+  display: block;
+  font: var(--font-body-16);
 }
 
 .actions {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: var(--spacing-8);
-  color: var(--color-oceanLux-400);
-  font: var(--font-body-16);
+  display: none;
+}
+
+@media (min-width: 635px) {
+  .counter-results-and-layout-actions--desktop {
+    display: block;
+  }
+
+  .counter-results-and-layout-actions--mobile {
+    display: none;
+  }
+
+  .actions {
+    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-8);
+    color: var(--color-oceanLux-400);
+    font: var(--font-body-16);
+  }
 }
 
 .yacht-cards {
@@ -246,16 +290,16 @@ main{
 .yacht-cards.grid {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: var(--spacing-48) var(--spacing-2);
-  
+
 }
 
 .yacht-cards.solo {
   grid-template-columns: repeat(2, minmax(300px, 1fr));
   gap: var(--spacing-60) var(--spacing-10);
-  }
+}
 
-  /* BREACKPOINTS */
-  /* @media (min-width: 1024px) {
+/* BREACKPOINTS */
+/* @media (min-width: 1024px) {
   .yacht-cards, .yacht-cards.grid, .yacht-cards.solo {
     gap: var(--spacing-60) var(--spacing-10);
   }
@@ -279,7 +323,7 @@ main{
   position: absolute;
   top: 10px;
   right: 10px;
-  z-index: 100;
+  z-index: var(--z-index-1);
   width: 26px;
   height: 26px;
 }
@@ -357,5 +401,4 @@ main{
   border: 0;
   padding: var(--spacing-8) var(--spacing-16) var(--spacing-8) var(--spacing-16);
 }
-
 </style>
