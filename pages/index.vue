@@ -1,3 +1,4 @@
+index.vue
 <template>
   <div>
     <header>
@@ -24,53 +25,23 @@
           </div>
         </div>
         <div :class="['yacht-cards', gridView]">
-          <article class="yacht-card">
-            <img class="img"
-              src="https://www.arthaudyachting.com/wp-content/uploads/2023/02/Yacht-charter-M-Y-DOMINIQUE_8.jpg"
-              alt="yacht image">
+          <article v-for="yacht in yachts" :key="yacht.id" class="yacht-card">
+            <img class="img" :src="yacht.coverImage.url" alt="yacht image">
             <a href="#" class="fav">
               <img src="../images/fav.icon.png" alt="fav icon">
             </a>
             <div class="details">
-              <p class="price">Price: €2.000.000</p>
-              <p>Length: 55.2m | Guests: 12 | Cabins: 7</p>
+              <p class="price">Price: €{{ yacht.buyPrice.EUR }}</p>
+              <p>Length: {{ yacht.length.meters }}m | Guests: {{ yacht.guestsNumber }} | Cabins: {{ yacht.cabinsNumber }}</p>
             </div>
             <div class="header-and-enquire-action">
-              <h3>Yacht Name</h3>
-              <a class="enquiry" href="#" aria-label="Enquire Yacht Name">Enquiry</a>
-            </div>
-          </article>
-          <!--  -->
-          <article class="yacht-card">
-            <img class="img"
-              src="https://www.arthaudyachting.com/wp-content/uploads/2023/02/Yacht-charter-M-Y-DOMINIQUE_8.jpg"
-              alt="yacht image">
-            <div class="details">
-              <p class="price">Price: €2.000.000</p>
-              <p>Length: 55.2m | Guests: 12 | Cabins: 7</p>
-            </div>
-            <div class="header-and-enquire-action">
-              <h3>Yacht Name</h3>
-              <a class="enquiry" href="#" aria-label="Enquire Yacht Name">Enquiry</a>
-            </div>
-          </article>
-          <!--  -->
-          <article class="yacht-card">
-            <img class="img"
-              src="https://www.arthaudyachting.com/wp-content/uploads/2023/02/Yacht-charter-M-Y-DOMINIQUE_8.jpg"
-              alt="yacht image">
-            <div class="details">
-              <p class="price">Price: €2.000.000</p>
-              <p>Length: 55.2m | Guests: 12 | Cabins: 7</p>
-            </div>
-            <div class="header-and-enquire-action">
-              <h3>Yacht Name</h3>
-              <a class="enquiry" href="#" aria-label="Enquire Yacht Name">Enquiry</a>
+              <h3>{{ yacht.name }}</h3>
+              <a class="enquiry" href="#" :aria-label="'Enquire ' + yacht.name">Enquiry</a>
             </div>
           </article>
         </div>
         <div class="load-more-wrapper">
-          <button class="load-button">
+          <button class="load-button" @click="loadMoreYachts">
             Load more
           </button>
         </div>
@@ -80,42 +51,85 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
 
-export default Vue.extend({
+import { defineComponent, ref, onMounted } from 'vue'
+
+export default defineComponent({
   name: 'IndexPage',
-  data() {
-    return {
-      gridView: 'grid' as 'grid' | 'solo',
+  setup() {
+    // **State variables**
+    const gridView = ref<'grid' | 'solo'>('grid');
+    const yachts = ref<any[]>([]);
+
+    // **Fetch yachts function (direct API call)**
+    const loadYachts = async () => {
+      try {
+        const response = await fetch('/api/yachts?buy=true&page=1'); 
+
+        if (!response.ok) throw new Error('Failed to fetch yachts');
+        const result = await response.json();
+        yachts.value = result.data;
+        console.log(yachts.value)
+        
+      } catch (error) {
+        console.error('Error loading yachts:', error);
+      }
     };
-  },
-  methods: {
-    setGridView(view: 'grid' | 'solo'): void {
-      this.gridView = view;
-      console.log("Grid view set to:", this.gridView);
-    },
-  },
-})
+
+    // **Load more yachts (append data)**
+    const loadMoreYachts = async () => {
+      try {
+        console.log('Loading more yachts...');
+        const response = await fetch('/api/yachts?buy=true&page=2');
+        if (!response.ok) throw new Error('Failed to load more yachts');
+        const moreYachts = await response.json();
+        yachts.value = [...yachts.value, ...moreYachts];
+      } catch (error) {
+        console.error('Error loading more yachts:', error);
+      }
+    };
+
+    // **Grid view toggle**
+    const setGridView = (view: 'grid' | 'solo') => {
+      gridView.value = view;
+      console.log("Grid view set to:", gridView.value);
+    };
+
+    // **Load yachts on mount**
+    onMounted(() => {
+      loadYachts();
+      console.log('Mounted lifecycle hook called');
+    });
+
+    return {
+      gridView,
+      yachts,
+      setGridView,
+      loadMoreYachts
+    };
+  }
+});
+
 </script>
 
 <style>
 @font-face {
   font-family: 'FrankRuhlLibre';
-  src: url('/fonts/FrankRuhlLibre-Regular.woff2') format('woff2');
+  src: url('../static/fonts/FrankRuhlLibre-Regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'UrbanGroteskMeBl';
-  src: url('/fonts/UrbanGroteskMeBl-Regular.woff2') format('woff2');
+  src: url('../static/fonts/UrbanGroteskMeBl-Regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'UrbanGroteskReBo';
-  src: url('/fonts/UrbanGroteskReBo-Regular.woff2') format('woff2');
+  src: url('../static/fonts/UrbanGroteskReBo-Regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
