@@ -1,9 +1,18 @@
 export interface Yacht {
-    id: number;
-    name: string;
-    price: string;
-    length: string;
-    guests: number;
-    cabins: number;
-    imageUrl: string;
-  }
+  id: string;
+  name: string;
+  coverImage: { url: string };
+  buyPrice: { EUR: number };
+  length: { meters: number };
+  guestsNumber: number;
+  cabinsNumber: number;
+  formattedPrice?: string;
+}
+
+const yachts = ref<Yacht[]>([]);
+
+
+export interface YachtResponse {
+  data: any[];
+  total: number;
+}
