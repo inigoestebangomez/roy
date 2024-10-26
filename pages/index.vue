@@ -9,19 +9,22 @@ index.vue
     <div class="blank-space"></div>
     <main>
       <h1 class="sr-only">Homepage</h1>
-      <section>
+       <div v-if="isLoadingData" class="loading-indicator">
+        <p>Loading yachts...</p>
+       </div>
+      <section v-else>
         <h2 class="sr-only">Yacht search results</h2>
         <div class="counter-results-and-layout-actions">
           <p class="counter-results-and-layout-actions--desktop">YACHTS FOR SALE · {{ totalYachts.total }}</p>
           <p class="counter-results-and-layout-actions--mobile">BUY · {{ totalYachts.total }} YACHTS</p>
           <div class="actions">
             <span>| View</span>
-            <a class="icon-grid" href="#">
+            <button class="icon-grid" href="#">
               <img src="../images/grid.png" alt="grid-items" @click.prevent="setGridView('grid')">
-            </a>
-            <a href="#">
+            </button>
+            <button class="icon-grid" href="#">
               <img src="../images/grid-solo.png" alt="solo-items" @click.prevent="setGridView('solo')">
-            </a>
+            </button>
           </div>
         </div>
         <div :class="['yacht-cards', gridView]">
@@ -41,9 +44,10 @@ index.vue
           </article>
         </div>
         <div class="load-more-wrapper">
-          <button class="load-button" @click="loadMoreYachts">
-            Load more
-          </button>
+          <button class="load-button" @click="loadMoreYachts" :disabled="isLoading">
+        <span v-if="isLoading">Loading...</span>
+        <span v-else>Load more</span>
+      </button>
         </div>
       </section>
     </main>
@@ -62,6 +66,8 @@ export default defineComponent({
     const gridView = ref<'grid' | 'solo'>('grid');
     const yachts = ref<any[]>([]);
       const totalYachts = ref<{ total: number }>({ total: 0 });
+      const isLoading = ref(false);
+      const isLoadingData = ref(true)
 
     // **Fetch yachts function (direct API call)**
     const loadYachts = async () => {
@@ -79,11 +85,16 @@ export default defineComponent({
         
       } catch (error) {
         console.error('Error loading yachts:', error);
+      }  finally {
+        isLoadingData.value = false;
       }
     };
 
     // **Load more yachts (append data)**
     const loadMoreYachts = async () => {
+      if (isLoading.value) return;
+      isLoading.value = true;
+
   try {
     console.log('Loading more yachts...');
     const response = await fetch('/api/yachts?buy=true&page=2');
@@ -98,7 +109,9 @@ export default defineComponent({
     ];
   } catch (error) {
     console.error('Error loading more yachts:', error);
-  }
+  } finally {
+        isLoading.value = false;
+      }
 };
 
     const formattedYachts = computed(() =>
@@ -125,7 +138,9 @@ export default defineComponent({
       setGridView,
       loadMoreYachts,
       totalYachts,
-      formattedYachts
+      formattedYachts,
+      isLoading,
+      isLoadingData
     };
   }
 });

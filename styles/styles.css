@@ -123,6 +123,21 @@ main {
   height: 1.75rem;
 }
 
+.loading-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-8) var(--spacing-16) var(--spacing-8) var(--spacing-16);
+  font: var(--font-body-16);
+  color: var(--color-oceanLux-800);
+}
+
+@media (min-width: 37.5rem) {
+  .loading-indicator {
+    font: var(--font-body-20);
+  }
+}
+
 /* MAIN CONTENT */
 .counter-results-and-layout-actions {
   display: flex;
@@ -175,6 +190,12 @@ main {
     color: var(--color-oceanLux-400);
     font: var(--font-body-16);
   }
+}
+
+.icon-grid {
+  background-color: transparent;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .yacht-cards {
@@ -276,6 +297,7 @@ main {
   border: 1px solid var(--color-oceanLux-600);
   border-radius: 0.125rem;
   color: var(--color-oceanLux-600);
+  cursor: pointer;
 }
 
 /*UTILS*/
