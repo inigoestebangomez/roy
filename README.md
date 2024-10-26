@@ -50,20 +50,20 @@ Todo esto bajo una **arquitectura** **escalable** y legible.
     .
     ├── images                   # Imágenes y logos
     ├── pages
-    │   ├── index.vue            # Archivo de desarrollo del HTML en templates, y lógica en script
+    │   └── index.vue            # Archivo de desarrollo del HTML en templates, y lógica en script
     ├── server                   
-    │   ├── api
-    │        ├── yachts.ts       # Ubicación del evento de Nuxt que efectúa la llamada al servidor. Añade un CORS.
+    │   └── api
+    │        └── yachts.ts       # Ubicación del evento de Nuxt que efectúa la llamada al servidor. Añade un CORS.
     │   └── middleware
     │        └── proxy.ts        # Middleware que apunta al dominio aportado para efectuar la llamada a la API.     
     ├── services                 
-    │   ├── yachtService.ts      # Servicio que llama al proxy de Nuxt
+    │   └── yachtService.ts      # Servicio que llama al proxy de Nuxt
     ├── static                   
-    │   ├── fonts                # Fuentes suministradas. 
+    │   └── fonts                # Fuentes suministradas. 
     ├── styles
-    │   ├── styles.css           # Componente de estilos de CSS.
+    │   └── styles.css           # Componente de estilos de CSS.
     ├── types
-    │   ├── yacht.ts             # Define la interfaz.
+    │   └── yacht.ts             # Define la interfaz.
     ├── vue.js                   # Archivo principal desde el que se renderiza la web.
     └── readme                   # Info del proyecto.
 
