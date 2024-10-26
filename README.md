@@ -74,7 +74,10 @@ All this under a **scalable** and **readable architecture**.
     │   ├── styles.css           # CSS styles component.
     ├── types
     │   ├── yacht.ts             # Defines the interface.
-    ├── vue.js                   # Main file from which the web is rendered.
+    ├── app.vue                  # Main file from which the web is rendered.
+    ├── nuxt.config.ts           # Nuxt main configuration file.
+    ├── package.json             # package.json file.
+    ├── tsconfig.json            # tsconfig.json file.
     └── readme                   # Project info.
 
 ### Figma
@@ -167,8 +170,11 @@ Todo esto bajo una **arquitectura** **escalable** y legible.
     │   └── styles.css           # Componente de estilos de CSS.
     ├── types
     │   └── yacht.ts             # Define la interfaz.
-    ├── vue.js                   # Archivo principal desde el que se renderiza la web.
-    └── readme                   # Info del proyecto.
+    ├── app.vue                  # Archivo principal desde el que se renderiza la web.
+    ├── nuxt.config.ts           # Archivo de configuración principal de Nuxt.
+    ├── package.json             # package.json.
+    ├── tsconfig.json            # tsconfig.json.
+    └── readme                   # Project info.
 
 ### Project
 
