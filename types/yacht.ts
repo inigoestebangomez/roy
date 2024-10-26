@@ -9,9 +9,6 @@ export interface Yacht {
   formattedPrice?: string;
 }
 
-const yachts = ref<Yacht[]>([]);
-
-
 export interface YachtResponse {
   data: any[];
   total: number;

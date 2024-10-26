@@ -1,6 +1,5 @@
-index.vue
 <template>
-  
+
   <div>
     <header>
       <a href="#">
@@ -10,8 +9,8 @@ index.vue
     <div class="blank-space"></div>
     <main>
       <h1 class="sr-only">Homepage</h1>
-      <div v-if="isLoadingData" class="loading-indicator">
-        <p>Loading yachts...</p>
+      <div v-if="isLoading && yachts.length === 0" class="loading-indicator">
+        <p>Loading...</p>
       </div>
       <section v-else>
         <h2 class="sr-only">Yacht search results</h2>
@@ -67,13 +66,15 @@ export default defineComponent({
   setup() {
     // **State variables**
     const gridView = ref<'grid' | 'solo'>('grid');
-    const yachts = ref<any[]>([]);
+    const yachts = ref<Yacht[]>([]);
     const totalYachts = ref<{ total: number }>({ total: 0 });
     const isLoading = ref(false);
-    const isLoadingData = ref(true)
+    const currentPage = ref(1);
 
     // **Fetch yachts function (API call)**
     const loadYachts = async () => {
+      if (isLoading.value) return;
+      isLoading.value = true;
       try {
         const response = await fetch('/api/yachts?buy=true&page=1');
 
@@ -85,11 +86,12 @@ export default defineComponent({
 
         totalYachts.value.total = result.meta.total;
         // console.log(totalYachts.value)
+        currentPage.value++;
 
       } catch (error) {
         console.error('Error loading yachts:', error);
       } finally {
-        isLoadingData.value = false;
+        isLoading.value = false;
       }
     };
 
@@ -143,11 +145,9 @@ export default defineComponent({
       totalYachts,
       formattedYachts,
       isLoading,
-      isLoadingData
     };
   }
 });
 
 </script>
 
-<style src="../styles/styles.css"></style>
