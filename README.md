@@ -1,11 +1,14 @@
 # ROY
+![roy](/images/header-roy.png)
+
 
 ## Info
 Proyecto Frontend en Vue, Nuxt.js, CSS y TypeScript para la página web ROY.
 
 Herramientas: Visual Studio Code, Figma, Chrome Desarollador, Git Fork.
 
-Buenas prácticas: Atomic Design, Responsive Design, Mobile First, Pixel Perfect, HTML semántico, Introducción a la Accesibilidad Web, Design System.
+Buenas prácticas: Atomic Design, Responsive Design, Mobile First, Pixel Perfect, HTML semántico, introducción a la Accesibilidad Web, Design System.
+
 #### [Repo Client](https://github.com/inigoestebangomez/roy.git)
 
 
@@ -13,7 +16,9 @@ Buenas prácticas: Atomic Design, Responsive Design, Mobile First, Pixel Perfect
 Implementación basada en un diseño Responsive de Figma. Los estilos de los componentes se han obtenido a través de la herramienta de inspección de Figma.
 
 ![web desktop grid 4](/images/desktop-4-screenshot.png)
+
 ![web desktop grid 2](/images/desktop-2-screenshot.png)
+
 ![mobile](/images/mobile-screenshot.png)
 
 ## HTML
@@ -73,5 +78,5 @@ Todo esto bajo una **arquitectura** **escalable** y legible.
 
 ## Links
 
-[GitHub](https://github.com/inigoestebangomez)
 [LinkedIn](https://www.linkedin.com/in/inigo-esteban-gomez/)
+[GitHub](https://github.com/inigoestebangomez)
