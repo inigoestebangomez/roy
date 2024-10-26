@@ -1,69 +1,77 @@
-# roy
+# ROY
 
-## Build Setup
+## Info
+Proyecto Frontend en Vue, Nuxt.js, CSS y TypeScript para la página web ROY.
 
-```bash
-# install dependencies
-$ npm install
+Herramientas: Visual Studio Code, Figma, Chrome Desarollador, Git Fork.
 
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
-
-## Special Directories
-
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
-
-### `assets`
-
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
-
-### `components`
-
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
-
-### `layouts`
-
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
+Buenas prácticas: Atomic Design, Responsive Design, Mobile First, Pixel Perfect, HTML semántico, Introducción a la Accesibilidad Web, Design System.
+#### [Repo Client](https://github.com/inigoestebangomez/roy.git)
 
 
-### `pages`
+## Design
+Implementación basada en un diseño Responsive de Figma. Los estilos de los componentes se han obtenido a través de la herramienta de inspección de Figma.
 
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
+![web desktop grid 4](/images/desktop-4-screenshot.png)
+![web desktop grid 2](/images/desktop-2-screenshot.png)
+![mobile](/images/mobile-screenshot.png)
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
+## HTML
+**HTML** **semántico** usando las **buenas prácticas** de la **W3School**. Las clases se han desarrollado para facilizar la componetización y conseguir una baja especificidad.
 
-### `plugins`
+## CSS
+El CSS ha sido escrito mediante variables para facilitar el mantenimiento, que sea sostenible y el crecimiento de la web.
 
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
+El código emplea las buenas prácticas de CSS:
+- **Normalize**
+- **Display Flex y Grid**
+- **Variables de CSS**
+- **Mixins y Functions**
+- **Breakpoints Responsive Mobile First (min-width)**
+- **Rems**
+- **Baja Especificidad**
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
+Todo esto bajo una **arquitectura** **escalable** y legible. 
 
-### `static`
+## Client Info
+- **Grid 4** - Funcionalidad por defecto que muestra una grid de 4 columnas para pantallas de 1440px.
+- **Grid 2** - Funcionalidad que muestra una grid de 2 columnas para pantallas de 1440px.
+- **Transitions** - Añadida funcionalidad de transiciones ease-in-out entre cambios de grid para amabilizar la transición.
+- **MobileFirst** - Funcionalidad por defecto para pantallas de 375px que muestra los elementos en 1 columna.
+- **LoadMore** - Botón que permite mostrar la siguiente página de productos.
 
-This directory contains your static files. Each file inside this directory is mapped to `/`.
+## Architecture
 
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
+    .
+    ├── images                   # Imágenes y logos
+    ├── pages
+    │   ├── index.vue            # Archivo de desarrollo del HTML en templates, y lógica en script
+    ├── server                   
+    │   ├── api
+    │        ├── yachts.ts       # Ubicación del evento de Nuxt que efectúa la llamada al servidor. Añade un CORS.
+    │   └── middleware
+    │        └── proxy.ts        # Middleware que apunta al dominio aportado para efectuar la llamada a la API.     
+    ├── services                 
+    │   ├── yachtService.ts      # Servicio que llama al proxy de Nuxt
+    ├── static                   
+    │   ├── fonts                # Fuentes suministradas. 
+    ├── styles
+    │   ├── styles.css           # Componente de estilos de CSS.
+    ├── types
+    │   ├── yacht.ts             # Define la interfaz.
+    ├── vue.js                   # Archivo principal desde el que se renderiza la web.
+    └── readme                   # Info del proyecto.
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
+### Project
 
-### `store`
+[Repository Link Client](https://github.com/inigoestebangomez/roy)
 
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+### Figma
+
+[Link](https://www.figma.com/design/oeoEH26SF77BlVZKhjdqyY/design?node-id=0-1&t=L7LhxUBOEGxkab4m-1)
+
+## Links
+
+[GitHub](https://github.com/inigoestebangomez)
+[LinkedIn](https://www.linkedin.com/in/inigo-esteban-gomez/)
