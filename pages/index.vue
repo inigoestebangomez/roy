@@ -1,5 +1,6 @@
 index.vue
 <template>
+  
   <div>
     <header>
       <a href="#">
@@ -9,9 +10,9 @@ index.vue
     <div class="blank-space"></div>
     <main>
       <h1 class="sr-only">Homepage</h1>
-       <div v-if="isLoadingData" class="loading-indicator">
+      <div v-if="isLoadingData" class="loading-indicator">
         <p>Loading yachts...</p>
-       </div>
+      </div>
       <section v-else>
         <h2 class="sr-only">Yacht search results</h2>
         <div class="counter-results-and-layout-actions">
@@ -35,7 +36,8 @@ index.vue
             </a>
             <div class="details">
               <p class="price">Price: €{{ yacht.formattedPrice }}</p>
-              <p>Length: {{ yacht.length.meters }}m | Guests: {{ yacht.guestsNumber }} | Cabins: {{ yacht.cabinsNumber }}</p>
+              <p>Length: {{ yacht.length.meters }}m | Guests: {{ yacht.guestsNumber }} | Cabins: {{ yacht.cabinsNumber
+                }}</p>
             </div>
             <div class="header-and-enquire-action">
               <h3>{{ yacht.name }}</h3>
@@ -45,13 +47,14 @@ index.vue
         </div>
         <div class="load-more-wrapper">
           <button class="load-button" @click="loadMoreYachts" :disabled="isLoading">
-        <span v-if="isLoading">Loading...</span>
-        <span v-else>Load more</span>
-      </button>
+            <span v-if="isLoading">Loading...</span>
+            <span v-else>Load more</span>
+          </button>
         </div>
       </section>
     </main>
   </div>
+
 </template>
 
 <script lang="ts">
@@ -65,14 +68,14 @@ export default defineComponent({
     // **State variables**
     const gridView = ref<'grid' | 'solo'>('grid');
     const yachts = ref<any[]>([]);
-      const totalYachts = ref<{ total: number }>({ total: 0 });
-      const isLoading = ref(false);
-      const isLoadingData = ref(true)
+    const totalYachts = ref<{ total: number }>({ total: 0 });
+    const isLoading = ref(false);
+    const isLoadingData = ref(true)
 
-    // **Fetch yachts function (direct API call)**
+    // **Fetch yachts function (API call)**
     const loadYachts = async () => {
       try {
-        const response = await fetch('/api/yachts?buy=true&page=1'); 
+        const response = await fetch('/api/yachts?buy=true&page=1');
 
         if (!response.ok) throw new Error('Failed to fetch yachts');
         const result = await response.json();
@@ -82,10 +85,10 @@ export default defineComponent({
 
         totalYachts.value.total = result.meta.total;
         // console.log(totalYachts.value)
-        
+
       } catch (error) {
         console.error('Error loading yachts:', error);
-      }  finally {
+      } finally {
         isLoadingData.value = false;
       }
     };
@@ -95,24 +98,24 @@ export default defineComponent({
       if (isLoading.value) return;
       isLoading.value = true;
 
-  try {
-    console.log('Loading more yachts...');
-    const response = await fetch('/api/yachts?buy=true&page=2');
-    if (!response.ok) throw new Error('Failed to load more yachts');
-    const moreYachts = await response.json();
-    yachts.value = [
-      ...yachts.value,
-      ...moreYachts.data.map((yacht: Yacht) => ({
-        ...yacht,
-        formattedPrice: new Intl.NumberFormat('es-ES').format(yacht.buyPrice.EUR),
-      })),
-    ];
-  } catch (error) {
-    console.error('Error loading more yachts:', error);
-  } finally {
+      try {
+        console.log('Loading more yachts...');
+        const response = await fetch('/api/yachts?buy=true&page=2');
+        if (!response.ok) throw new Error('Failed to load more yachts');
+        const moreYachts = await response.json();
+        yachts.value = [
+          ...yachts.value,
+          ...moreYachts.data.map((yacht: Yacht) => ({
+            ...yacht,
+            formattedPrice: new Intl.NumberFormat('es-ES').format(yacht.buyPrice.EUR),
+          })),
+        ];
+      } catch (error) {
+        console.error('Error loading more yachts:', error);
+      } finally {
         isLoading.value = false;
       }
-};
+    };
 
     const formattedYachts = computed(() =>
       yachts.value.map(yacht => ({
