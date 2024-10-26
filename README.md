@@ -63,17 +63,17 @@ All this under a **scalable** and **readable architecture**.
     │   ├── index.vue            # HTML development file in <templates>, and logic in <script>.
     ├── server
     │   ├── api
-    │        ├── yachts.ts       # Location of the Nuxt event that makes the call to the server. Adds a CORS.
+    │   │     ├── yachts.ts      # Location of the Nuxt event that makes the call to the server. Adds a CORS.
     │   └── middleware
     │        └── proxy.ts        # Middleware that points to the provided domain to make the API call.
     ├── services
-    │   ├── yachtService.ts      # Service that calls the Nuxt proxy.
+    │   └── yachtService.ts      # Service that calls the Nuxt proxy.
     ├── static
-    │   ├── fonts                # Supplied fonts.
+    │   └── fonts                # Supplied fonts.
     ├── styles
-    │   ├── styles.css           # CSS styles component.
+    │   └── styles.css           # CSS styles component.
     ├── types
-    │   ├── yacht.ts             # Defines the interface.
+    │   └── yacht.ts             # Defines the interface.
     ├── app.vue                  # Main file from which the web is rendered.
     ├── nuxt.config.ts           # Nuxt main configuration file.
     ├── package.json             # package.json file.
@@ -159,7 +159,7 @@ Todo esto bajo una **arquitectura** **escalable** y legible.
     │   └── index.vue            # Archivo de desarrollo del HTML en templates, y lógica en script
     ├── server
     │   ├── api
-    │        └── yachts.ts       # Ubicación del evento de Nuxt que efectúa la llamada al servidor. Añade un CORS.
+    │   │     └── yachts.ts      # Ubicación del evento de Nuxt que efectúa la llamada al servidor. Añade un CORS.
     │   └── middleware
     │        └── proxy.ts        # Middleware que apunta al dominio aportado para efectuar la llamada a la API.
     ├── services
