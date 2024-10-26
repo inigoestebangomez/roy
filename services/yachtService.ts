@@ -1,8 +1,7 @@
-import { Yacht } from "~/types/yacht";
+import type { Yacht } from "~/types/yacht";
 
 export async function fetchYachts(): Promise<Yacht[]> {
   const response = await fetch('/api/yachts');
-  console.log('Response from API:', response);
   if (!response.ok) {
     throw new Error('Failed to fetch yachts');
   }
