@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import Index from './pages/index.vue';
+import Header from './components/header.vue';
 </script>
 
 <template>
-  <div>
-    <Index />
-  </div>
+  <Header />
+  <main>
+    <NuxtPage />
+  </main>
 </template>
