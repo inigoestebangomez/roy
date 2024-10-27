@@ -1,11 +1,11 @@
-import type { Yacht } from "~/types/yacht";
+import type { YachtResponse } from "~/types/yacht";
 
-export async function fetchYachts(): Promise<Yacht[]> {
-  const response = await fetch('/api/yachts');
-  if (!response.ok) {
-    throw new Error('Failed to fetch yachts');
+export async function fetchYachts(currentPage: number): Promise<YachtResponse> {
+  try {
+    const response = await fetch(`/api/yachts?buy=true&page=${currentPage}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw new Error("Error fetching yachts");
   }
-  const data = await response.json();
-  console.log('Yachts data:', data);
-  return data as Yacht[];
 }

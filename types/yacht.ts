@@ -9,7 +9,11 @@ export interface Yacht {
   formattedPrice?: string;
 }
 
-export interface YachtResponse {
-  data: any[];
+export interface Pagination {
   total: number;
+}
+
+export interface YachtResponse {
+  data: Yacht[];
+  meta: Pagination;
 }

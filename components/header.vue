@@ -1,6 +1,6 @@
 <template>
     <header>
-        <a href="#">
+        <a href="/">
             <img class="logo-roy" src="../images/Title.png" alt="Roy´s homepage">
         </a>
     </header>
@@ -14,7 +14,7 @@ header {
     padding-top: var(--spacing-12);
     padding-bottom: var(--spacing-12);
     height: var(--header-height);
-    /* navbar fixed */
+    /* WHEN SCROLLING */
     position: fixed;
     left: 0;
     right: 0;

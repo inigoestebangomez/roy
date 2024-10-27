@@ -48,15 +48,15 @@
   --color-primary-800: #0b2020;
   --color-primary-900: #091919;
   --color-primary-700: #405757;
-  
+
   /* FONTS */
   --font-family: UrbanGroteskReBo, Helvetica, Arial, sans-serif;
   --font-weight-regular: 400;
 
-  --font-h3: var(--font-weight-regular) 20px/1.5 var(--font-family);
-  --font-body-20: var(--font-weight-regular) 20px/1.5 var(--font-family);
-  --font-body-16: var(--font-weight-regular) 16px/1.5 var(--font-family);
-  --font-button-16: var(--font-weight-regular) 16px/1.5 var(--font-family);
+  --font-h3: var(--font-weight-regular) 1.25rem/1.5 var(--font-family);
+  --font-body-20: var(--font-weight-regular) 1.25rem/1.5 var(--font-family);
+  --font-body-16: var(--font-weight-regular) 1rem/1.5 var(--font-family);
+  --font-button-16: var(--font-weight-regular) 1rem/1.5 var(--font-family);
 
   /* SPACINGS */
   --spacing-2: 0.125rem;
@@ -73,7 +73,7 @@
   --spacing-64: 4rem;
 
   /* LAYOUT */
-  --header-height: 80px;
+  --header-height: 5rem;
 
   /* Z-INDEX */
   --z-index-1: 1;
@@ -96,7 +96,7 @@ h3 {
 }
 
 main {
-  margin-top: var(--header-height);
+  padding-top: var(--header-height);
 }
 
 /* UTILS */
