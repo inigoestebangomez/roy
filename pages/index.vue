@@ -174,7 +174,7 @@ export default defineComponent({
   width: 6.875rem;
   height: 2.75rem;
   background-color: transparent;
-  border: 1px solid var(--color-oceanLux-600);
+  border: 0.063rem solid var(--color-oceanLux-600);
   border-radius: 0.125rem;
   color: var(--color-oceanLux-600);
   cursor: pointer;
