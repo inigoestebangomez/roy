@@ -8,7 +8,7 @@
     <div class="counter-results-and-layout-actions">
       <p class="counter-results--desktop">YACHTS FOR SALE · {{ totalYachts }}</p>
       <p class="counter-results--mobile">BUY · {{ totalYachts }} YACHTS</p>
-      <div class="actions">
+      <div class="layout-actions">
         <span>| View</span>
         <button class="icon-grid" href="#">
           <img src="../images/grid.png" alt="grid-items" @click.prevent="setGridView('grid')">
@@ -110,7 +110,7 @@ export default defineComponent({
   font: var(--font-body-16);
 }
 
-.actions {
+.layout-actions {
   display: none;
 }
 
@@ -125,7 +125,7 @@ export default defineComponent({
     display: none;
   }
 
-  .actions {
+  .layout-actions {
     display: block;
     display: flex;
     justify-content: center;
@@ -158,8 +158,14 @@ export default defineComponent({
 }
 
 .yacht-cards.solo {
-  grid-template-columns: repeat(2, minmax(18.75rem, 1fr));
+  grid-template-columns: repeat(1, minmax(18.75rem, 1fr));
   gap: var(--spacing-60) var(--spacing-10);
+}
+
+@media (min-width: 37.5rem) {
+  .yacht-cards.solo {
+    grid-template-columns: repeat(2, minmax(18.75rem, 1fr));
+  }
 }
 
 /* LOAD MORE */
